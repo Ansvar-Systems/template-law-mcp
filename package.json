@@ -2,7 +2,7 @@
   "name": "template-law-mcp",
   "version": "0.1.0",
   "private": true,
-  "description": "Reusable multi-country shell for law MCP servers.",
+  "description": "Reusable multi-country shell for law MCP servers. Infrastructure-grade template per MCP Infrastructure Blueprint.",
   "type": "module",
   "engines": {
     "node": ">=20"
@@ -11,14 +11,19 @@
     "build": "tsc -p tsconfig.json",
     "dev": "tsx src/index.ts",
     "start": "node dist/src/index.js",
+    "test": "vitest run __tests__/unit/",
+    "test:contract": "vitest run __tests__/contract/",
+    "test:watch": "vitest",
+    "lint": "tsc --noEmit -p tsconfig.json",
     "scaffold:country": "npm run build && node dist/scripts/scaffold-country.js",
-    "test": "npm run build && node --test dist/test/**/*.test.js",
-    "typecheck": "tsc --noEmit -p tsconfig.json",
-    "validate": "npm run typecheck && npm test"
+    "drift:detect": "tsx scripts/drift-detect.ts",
+    "health": "curl -s http://localhost:3000/health | jq .",
+    "validate": "npm run lint && npm test && npm run test:contract"
   },
   "devDependencies": {
     "@types/node": "^22.13.4",
     "tsx": "^4.19.2",
-    "typescript": "^5.7.3"
+    "typescript": "^5.7.3",
+    "vitest": "^3.0.0"
   }
 }

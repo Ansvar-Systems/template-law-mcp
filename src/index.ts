@@ -17,6 +17,18 @@ export type {
   ToolCall,
   ToolResult,
 } from "./shell/types.js";
+export {
+  getHealthResponse,
+  getVersionResponse,
+  handleInfraEndpoint,
+  FRESHNESS_THRESHOLDS,
+} from "./shell/health.js";
+export type {
+  HealthConfig,
+  HealthResponse,
+  VersionResponse,
+  DataFreshness,
+} from "./shell/health.js";
 
 const shell = LawMcpShell.fromAdapters(resolveAdapters());
 

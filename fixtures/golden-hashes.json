@@ -1,0 +1,17 @@
+{
+  "$schema": "./golden-hashes.schema.json",
+  "version": "1.0",
+  "mcp_name": "Template Law MCP",
+  "jurisdiction": "TEMPLATE",
+  "description": "When scaffolding a new country MCP, replace these with 5-10 stable provisions from the target jurisdiction. Pick constitutional articles, definition sections, or scope articles that rarely change.",
+  "provisions": [
+    {
+      "id": "tmpl-hash-001",
+      "description": "EXAMPLE: Replace with a stable constitutional provision",
+      "upstream_url": "https://example.com/law/article-1",
+      "selector_hint": "Article 1",
+      "expected_sha256": "REPLACE_WITH_SHA256_OF_NORMALIZED_TEXT",
+      "expected_snippet": "REPLACE_WITH_EXPECTED_TEXT_SNIPPET"
+    }
+  ]
+}

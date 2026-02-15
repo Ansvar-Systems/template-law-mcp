@@ -1,0 +1,142 @@
+{
+  "$schema": "./golden-tests.schema.json",
+  "version": "1.0",
+  "mcp_name": "Template Law MCP",
+  "description": "Golden contract tests for the template law MCP. When scaffolding a new country MCP, replace these with country-specific tests (minimum 10).",
+  "tests": [
+    {
+      "id": "tmpl-001",
+      "category": "article_retrieval",
+      "description": "Get a known Swedish document by ID",
+      "tool": "law.get_document",
+      "input": {
+        "country": "se",
+        "id": "sfs-2010-110"
+      },
+      "assertions": {
+        "result_not_empty": true,
+        "fields_present": ["id", "title", "country"]
+      }
+    },
+    {
+      "id": "tmpl-002",
+      "category": "article_retrieval",
+      "description": "Get a known Norwegian document by ID",
+      "tool": "law.get_document",
+      "input": {
+        "country": "no",
+        "id": "lov-1999-05-21-30"
+      },
+      "assertions": {
+        "result_not_empty": true,
+        "fields_present": ["id", "title", "country"]
+      }
+    },
+    {
+      "id": "tmpl-003",
+      "category": "article_retrieval",
+      "description": "List countries returns both registered adapters",
+      "tool": "law.list_countries",
+      "input": {},
+      "assertions": {
+        "result_not_empty": true,
+        "min_results": 2
+      }
+    },
+    {
+      "id": "tmpl-004",
+      "category": "search",
+      "description": "Search Swedish documents for 'skollag' returns results",
+      "tool": "law.search_documents",
+      "input": {
+        "country": "se",
+        "query": "skollag"
+      },
+      "assertions": {
+        "result_not_empty": true,
+        "any_result_contains": ["Skollag"]
+      }
+    },
+    {
+      "id": "tmpl-005",
+      "category": "search",
+      "description": "Search Norwegian documents for 'menneskerettigheter' returns results",
+      "tool": "law.search_documents",
+      "input": {
+        "country": "no",
+        "query": "menneskerettighetenes"
+      },
+      "assertions": {
+        "result_not_empty": true,
+        "any_result_contains": ["menneskerettighetenes"]
+      }
+    },
+    {
+      "id": "tmpl-006",
+      "category": "citation_roundtrip",
+      "description": "Parse valid SFS citation for Sweden",
+      "tool": "law.parse_citation",
+      "input": {
+        "country": "se",
+        "citation": "SFS 2010:800"
+      },
+      "assertions": {
+        "result_not_empty": true,
+        "fields_present": ["normalized"],
+        "text_contains": ["SFS 2010:800"]
+      }
+    },
+    {
+      "id": "tmpl-007",
+      "category": "citation_roundtrip",
+      "description": "Validate valid SFS citation for Sweden",
+      "tool": "law.validate_citation",
+      "input": {
+        "country": "se",
+        "citation": "SFS 2010:800"
+      },
+      "assertions": {
+        "result_not_empty": true,
+        "fields_present": ["valid"]
+      }
+    },
+    {
+      "id": "tmpl-008",
+      "category": "negative_test",
+      "description": "Unknown country returns structured error",
+      "tool": "law.describe_country",
+      "input": {
+        "country": "xx"
+      },
+      "assertions": {
+        "handles_gracefully": true
+      }
+    },
+    {
+      "id": "tmpl-009",
+      "category": "negative_test",
+      "description": "Invalid citation format returns structured error",
+      "tool": "law.parse_citation",
+      "input": {
+        "country": "se",
+        "citation": "not-a-real-citation-12345"
+      },
+      "assertions": {
+        "handles_gracefully": true
+      }
+    },
+    {
+      "id": "tmpl-010",
+      "category": "negative_test",
+      "description": "Get non-existent document returns null gracefully",
+      "tool": "law.get_document",
+      "input": {
+        "country": "se",
+        "id": "does-not-exist-99999"
+      },
+      "assertions": {
+        "handles_gracefully": true
+      }
+    }
+  ]
+}

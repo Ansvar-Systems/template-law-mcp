@@ -1,0 +1,35 @@
+# sources.yml — Data provenance metadata
+# Reference: docs/mcp-infrastructure-blueprint.md §3
+#
+# When scaffolding a new country MCP from this template:
+# 1. Replace all <PLACEHOLDER> values with real data
+# 2. Add one entry per upstream source
+# 3. Keep last_ingested and last_verified current after each ingest run
+
+schema_version: "1.0"
+mcp_name: "<COUNTRY_NAME> Law MCP"
+jurisdiction: "<ISO_3166_ALPHA2>"
+
+sources:
+  - name: "<Official Source Name>"
+    authority: "<Issuing Body>"
+    official_portal: "<URL>"
+    canonical_identifier: "<ELI URI, ECLI, or N/A>"
+    retrieval_method: "API | HTML_SCRAPE | XML_DOWNLOAD | RDF | SPARQL | BULK_DOWNLOAD"
+    api_documentation: "<URL or N/A>"
+    update_frequency: "daily | weekly | monthly | on_change | manual"
+    last_ingested: "<YYYY-MM-DD>"
+    license_or_terms:
+      type: "<License name or 'Government Open Data'>"
+      url: "<URL to terms>"
+      summary: "<1-line summary>"
+    coverage:
+      scope: "<What's included>"
+      limitations: "<What's NOT included>"
+    languages:
+      - "<ISO 639-1 code>"
+
+data_freshness:
+  automated_checks: true
+  check_frequency: "daily"
+  last_verified: "<YYYY-MM-DD>"
