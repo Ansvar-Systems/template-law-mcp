@@ -31,6 +31,8 @@ export const swedenAdapter: CountryAdapter = {
     documents: true,
     citations: true,
     ingestion: true,
+    version_tracking: false,
+    change_diffs: false,
   },
   async searchDocuments(request) {
     return searchDocumentsInMemory(SWEDISH_LEGISLATION, request);

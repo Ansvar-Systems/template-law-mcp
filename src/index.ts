@@ -14,6 +14,11 @@ export type {
   CountryAdapter,
   CountryDescriptor,
   LawDocument,
+  ProvisionDiff,
+  ProvisionHistory,
+  ProvisionVersion,
+  RecentChange,
+  RecentChangesResponse,
   ToolCall,
   ToolResult,
 } from "./shell/types.js";

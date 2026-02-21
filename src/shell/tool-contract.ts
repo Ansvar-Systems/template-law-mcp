@@ -91,4 +91,52 @@ export const TOOL_DEFINITIONS: ToolDefinition[] = [
       },
     },
   },
+  // Premium tools — version tracking
+  {
+    name: "law.get_provision_history",
+    description:
+      "Get the full version timeline for a specific provision or article. Premium feature — requires Ansvar Intelligence Portal.",
+    inputSchema: {
+      type: "object",
+      additionalProperties: false,
+      required: ["country", "law_identifier", "article"],
+      properties: {
+        country: { type: "string" },
+        law_identifier: { type: "string", description: "Law or regulation identifier, e.g. 'SFS 2018:1472'" },
+        article: { type: "string", description: "Article or section reference, e.g. '1 kap. 2 §'" },
+      },
+    },
+  },
+  {
+    name: "law.diff_provision",
+    description:
+      "Show what changed in a provision between two dates. Premium feature — requires Ansvar Intelligence Portal.",
+    inputSchema: {
+      type: "object",
+      additionalProperties: false,
+      required: ["country", "law_identifier", "article", "from_date"],
+      properties: {
+        country: { type: "string" },
+        law_identifier: { type: "string", description: "Law or regulation identifier" },
+        article: { type: "string", description: "Article or section reference" },
+        from_date: { type: "string", description: "ISO date to diff from, e.g. '2024-01-01'" },
+        to_date: { type: "string", description: "ISO date to diff to (defaults to current)" },
+      },
+    },
+  },
+  {
+    name: "law.get_recent_changes",
+    description:
+      "List all provisions that changed since a given date. Premium feature — requires Ansvar Intelligence Portal.",
+    inputSchema: {
+      type: "object",
+      additionalProperties: false,
+      required: ["country", "since"],
+      properties: {
+        country: { type: "string" },
+        since: { type: "string", description: "ISO date, e.g. '2024-06-01'" },
+        limit: { type: "number", minimum: 1, maximum: 200 },
+      },
+    },
+  },
 ];
