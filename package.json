@@ -16,6 +16,7 @@
     "test:watch": "vitest",
     "lint": "tsc --noEmit -p tsconfig.json",
     "scaffold:country": "npm run build && node dist/scripts/scaffold-country.js",
+    "download:db": "bash scripts/download-db.sh",
     "drift:detect": "tsx scripts/drift-detect.ts",
     "health": "curl -s http://localhost:3000/health | jq .",
     "validate": "npm run lint && npm test && npm run test:contract"
