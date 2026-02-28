@@ -6,3 +6,5 @@ data/*.db
 data/*.db.gz
 data/*.db-journal
 !data/.gitkeep
+.claude/
+.serena/
